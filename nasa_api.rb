@@ -2,7 +2,6 @@ require "uri"
 require "net/http"
 
 def request(address, api_key)
-    #filtered_hash = {}
     url = URI(address+ "&api_key=" +api_key)
     #debo concatenar la api key en la url
     
@@ -18,7 +17,7 @@ def request(address, api_key)
 end
 
     body = request("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY&page=1")
-    body = body["photos"][0..1]#dentro del body debo acudir a las fotos y defino un rango
+    body = body["photos"]
 
 #crear un metodo llamado buid_web_page
 def buid_web_page(response_hash)#que reciba en hash de respuesta
@@ -32,13 +31,13 @@ def buid_web_page(response_hash)#que reciba en hash de respuesta
 end
 
 buid_web_page(response_hash)
-puts "Pagina Web creada"
+puts "Pagina Web"
 
 #pregunta bonus, crear metodo 
 def photos_count(hash)#que reciba un hash de respuesta
     #devuelva new_hash #con el nombre de la camara y cantidad de fotos
 
-    data = request("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY&page=1")[0..10]#limitamos los restultados a 10
+    data = request("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY&page=1")[0..25]#limitamos los restultados a 25
     photos = data.map{|x| x['url']}
     html = ""
     photos.each do |photo|
