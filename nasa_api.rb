@@ -31,22 +31,22 @@ def photos_count(data)
     photos_array = data["photos"]#accediendo al arrelgo fotos
     final_array = []
    
-    photos_array.each do |i|
-        final_array << i['camera']['name']
+    photos_array.each do |i|# voy a iterar para guardarlos en el arreglo final nombre y camara
+        final_array.push i['camera']['name']
 
     end
 
     final_hash = final_array.group_by {|x| x}#esta agrupando todos los nombres
-    final_hash.each do |k,v|#
+    final_hash.each do |k,v|# y mi archivo final será un hash con nombre y camara
         final_hash[k] = v.count
     end
 
-    final_hash
+    final_hash #devuelve el hash final del método
 end
 
     data = request("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000", "&api_key=0IKxbe4GcwTwCfJsbKzegTyslzF6NhVE1gHkgRgy&page=1")
-    build_web_page(data)
-    print photos_count(data)
+    build_web_page(data)#llamo al metódo de la pagina web y le paso la url que tengo en mi variable data
+    print photos_count(data)#llamo al método que filtra las fotos por nombre y camara y le paso la variable data donde está la url
 
 
 
