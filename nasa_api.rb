@@ -44,11 +44,10 @@ def photos_count(data)
     final_hash #devuelve el hash final del método
 end
 
-    data = request("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000", "&api_key=0IKxbe4GcwTwCfJsbKzegTyslzF6NhVE1gHkgRgy&page=1")
+    dirección_api = ("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key="
+    key_api = "ZweOQ9fc4zm3OJEZ918gT7pct9HaIaRS2AP6rrUb&page=1"
+    
+    data = request(dirección_api, key_api)
+        
     build_web_page(data)#llamo al metódo de la pagina web y le paso la url que tengo en mi variable data
     print photos_count(data)#llamo al método que filtra las fotos por nombre y camara y le paso la variable data donde está la url
-
-
-
-
-
