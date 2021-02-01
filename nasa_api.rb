@@ -1,4 +1,4 @@
-require 'json'
+require 'json' #se debe requerir para utilizarlo
 require 'net/http'
 
 def request(address, api_key)
@@ -21,8 +21,15 @@ def build_web_page(hash)#que reciba en hash de respuesta
     #se evalúa la pagina creada y tiene que tener formato
     photos = hash["photos"]
 
-    html = "<html>\n<title>Fotos Api Nasa</title>\n<head>\n</head>\n<body>\n<h2>Fotos Api Nasa</h2>\n<ul>\n"
-    photos.map {|img| html += "\t<li><img src=#{img["img_src"]}></li>\n"}
+    html = "<html>\n
+    <title>Fotos Api Nasa</title>\n
+    <head>\n
+    </head>\n
+    <body>\n
+    <h2>Bienvenidos a disfrutar las fotos del espacio desde la Nasa</h2>\n
+    <ul>\n"
+
+    photos.map {|img| html += "\t<li><img src=#{img["img_src"]} width='200px'></li>\n"}
     html += "</ul>\n</body>\n</html>"
     File.write('nasa_api.html', html)
 end
